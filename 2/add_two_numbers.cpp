@@ -12,27 +12,45 @@ struct ListNode {
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        int num1 = 0;
-        int num2 = 0;
-        int pow = 1;
-        while (l1 != nullptr) {
-            num1 += l1->val * pow;
+        ListNode *result = new ListNode();
+        int temp = l1->val + l2->val;
+        result->val = temp % 10;
+        int carry = temp / 10;
+        ListNode *current = result;
+        l1 = l1->next;
+        l2 = l2->next;
+        while (l1 != nullptr && l2 != nullptr) {
+            temp = l1->val + l2->val + carry;
+            current->next = new ListNode(temp % 10);
+            carry = temp / 10;
             l1 = l1->next;
-            pow *= 10;
-        }
-        pow = 1;
-        while (l2 != nullptr) {
-            num2 += l2->val * pow;
             l2 = l2->next;
-            pow *= 10;
+            current = current->next;
         }
-        std::string sum_str = std::to_string(num1 + num2);
-        ListNode *result = new ListNode(*(sum_str.rbegin()) - '0');
-        ListNode *cur = result;
-        for (std::string::reverse_iterator rit=sum_str.rbegin() + 1; rit!=sum_str.rend(); rit++) {
-            ListNode *next = new ListNode(*rit - '0');
-            cur->next = next;
+
+        if (l1 == nullptr && l2 != nullptr) {
+            while (l2 != nullptr) {
+                temp = l2->val + carry;
+                current->next = new ListNode(temp % 10);
+                carry = temp / 10;
+                l2 = l2->next;
+                current = current->next;
+            }
+        }
+        if (l2 == nullptr && l1 != nullptr) {
+            while (l1 != nullptr) {
+                temp = l1->val + carry;
+                current->next = new ListNode(temp % 10);
+                carry = temp / 10;
+                l1 = l1->next;
+                current = current->next;
+            }
+        }
+
+        if (carry > 0) {
+            current->next = new ListNode(carry % 10);
         }
         return result;
     }
 };
+

@@ -11,7 +11,6 @@ public:
         std::string x_str = std::to_string(x);
         auto length = x_str.length();
         for (long unsigned int i = 0; i < length / 2; i++) {
-            //std::cout << "x_str: " << x_str << ", i: " << i << ", x_str[i]: " << x_str[i] << ", x_str[length-1-i]: " << x_str[length-1-i] << "\n";
             if (x_str[i] != x_str[length-1-i]) {
                 return false;
             }
@@ -97,13 +96,11 @@ public:
         std::unordered_set<int> good_ints;
         for (int i = low; i < high; i++) {
             if (isKpalindrome(i, k)) {
-                std::cout << i << " is k-palindromic in " << k << "!\n";
                 good_ints.insert(sortedNumber(i));
             }
         }
         for (int good_int : good_ints) {
             count += countPermutations(good_int);
-            std::cout << "Count is now " << count << "\n";
         }
         return count;
     }

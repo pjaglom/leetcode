@@ -1,6 +1,8 @@
+#include <vector>
+
 class Solution {
 public:
-    int countPairs(vector<int>& nums, int k) {
+    int countPairs(std::vector<int>& nums, int k) {
         int count;
         for (int i = 0; i < nums.size() - 1; i++) {
             for (int j = i + 1; j < nums.size(); j++) {
@@ -13,3 +15,4 @@ public:
         return count;
     }
 };
+

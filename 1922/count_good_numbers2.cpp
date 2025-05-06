@@ -15,19 +15,6 @@ public:
         return result;
     }
 
-    long long my_2pow(long long n) {
-        long long result = 1;
-        while (n > 0) {
-            if (n > 32) {
-                result = ((result) * ((1ll << 32) % magic)) % magic;
-                n -= 32;
-            } else {
-                result = ((result) * ((1ll << n) % magic)) % magic;
-                n -= n;
-            }
-        }
-        return result;
-    }
     int countGoodNumbers(long long n) {
         long long total = 1;
         if (n == 1) {

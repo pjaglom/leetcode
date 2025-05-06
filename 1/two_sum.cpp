@@ -10,7 +10,7 @@ public:
         for (int i = 0; i < nums.size(); i++) {
             auto complement = dict.find(target - nums[i]);
             if (complement != dict.end()) {
-                result = {i, dict[complement->second]};
+                result = {i, complement->second};
                 return result;
             }
             dict.insert({nums[i], i});

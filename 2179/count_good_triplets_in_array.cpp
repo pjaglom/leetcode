@@ -8,10 +8,8 @@ public:
 
     long long goodTriplets(std::vector<int>& nums1, std::vector<int>& nums2) {
         int length = nums1.size();
-        std::unordered_map<int, int> nums1_dict;
         std::unordered_map<int, int> nums2_dict;
         for (int i = 0; i < length; i++) {
-            nums1_dict[nums1[i]] = i;
             nums2_dict[nums2[i]] = i;
         }
 

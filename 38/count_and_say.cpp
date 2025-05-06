@@ -6,7 +6,7 @@ public:
     std::string runLengthEncode(std::string str) {
         std::string result = "";
         int tempCount = 0;
-        for (long unsigned int i = 0; i < str.length(); i++) {
+        for (int i = 0; i < str.length(); i++) {
             tempCount++;
             if (str[i] != str[i + 1]) {
                 result.append(std::to_string(tempCount));
@@ -17,13 +17,13 @@ public:
         return result;
     }
     std::string countAndSay(int n) {
-        if (n == 1) {
-            return "1";
+        std::string result = "1";
+        for (int i = 2; i <=n; i++) {
+            result = runLengthEncode(result);
         }
-        return runLengthEncode(countAndSay(n - 1));
+        return result;
     }
 };
-
 int main() {
     Solution solution;
     std::cout << "1: " << solution.runLengthEncode("1");
